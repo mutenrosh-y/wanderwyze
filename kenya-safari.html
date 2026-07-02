@@ -19,6 +19,8 @@
     setTheme(theme) {
         this.activeTheme = theme;
         localStorage.setItem('wanderwyze_theme', theme);
+        document.body.classList.remove('theme-editorial', 'theme-coastal', 'theme-mystic');
+        document.body.classList.add(theme);
     }
 }" :class="activeTheme" class="bg-[var(--bg)] text-[var(--text-main)] transition-theme antialiased min-h-screen">
 

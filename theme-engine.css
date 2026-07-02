@@ -70,22 +70,22 @@ body {
     background-color: var(--bg);
     color: var(--text-main);
     font-family: var(--font-body);
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
 
 h1, h2, h3, h4, h5, h6, .brand-heading {
     font-family: var(--font-heading);
-    transition: font-family 0.5s ease-in-out;
+    transition: font-family 0.15s ease-in-out;
 }
 
 /* --- Smooth Transition Utilities --- */
 .transition-theme {
-    transition: background-color 0.5s ease-in-out, 
-                color 0.5s ease-in-out, 
-                border-color 0.5s ease-in-out, 
-                fill 0.5s ease-in-out, 
-                stroke 0.5s ease-in-out, 
-                box-shadow 0.5s ease-in-out;
+    transition: background-color 0.15s ease-in-out, 
+                color 0.15s ease-in-out, 
+                border-color 0.15s ease-in-out, 
+                fill 0.15s ease-in-out, 
+                stroke 0.15s ease-in-out, 
+                box-shadow 0.15s ease-in-out;
 }
 
 /* --- Alpine.js x-cloak Support to Prevent FOUC / Flashing on Load --- */

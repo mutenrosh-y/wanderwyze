@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wander Wyze Holidays - Kenya Safari Packages</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Live Theme Variable Overlays -->
+    <link rel="stylesheet" href="./theme-engine.css">
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body x-data="{ 
+    activeTheme: localStorage.getItem('wanderwyze_theme') || 'theme-editorial',
+    customizerModal: false,
+    mobileMenu: false,
+    selectedDestination: 'Kenya Safari Adventure',
+    setTheme(theme) {
+        this.activeTheme = theme;
+        localStorage.setItem('wanderwyze_theme', theme);
+    }
+}" :class="activeTheme" class="bg-[var(--bg)] text-[var(--text-main)] transition-theme antialiased min-h-screen">
+
+    <!-- Synchronously set the theme class on body to prevent flash of unstyled theme (FOUT) -->
+    <script>
+        document.body.classList.add(localStorage.getItem('wanderwyze_theme') || 'theme-editorial');
+    </script>
+
+    <!-- Global Floating Theme Toggle Dashboard -->
+    <div class="fixed bottom-6 right-6 z-50 bg-[var(--card-bg)] text-[var(--text-main)] border border-[var(--border)] rounded-full px-4 py-2.5 shadow-2xl flex items-center space-x-3 transition-theme">
+        <span class="text-[10px] uppercase font-bold tracking-widest text-[var(--text-muted)] hidden md:inline">Choose Theme:</span>
+        <div class="flex items-center space-x-1.5">
+            <button @click="setTheme('theme-editorial')" 
+                    :class="activeTheme === 'theme-editorial' ? 'ring-2 ring-[var(--accent)] scale-110' : 'opacity-60 hover:opacity-100'"
+                    class="w-6 h-6 rounded-full bg-[#0F2E1E] border border-stone-200 transition-all focus:outline-none" title="Option A: Editorial"></button>
+            <button @click="setTheme('theme-coastal')" 
+                    :class="activeTheme === 'theme-coastal' ? 'ring-2 ring-[var(--accent)] scale-110' : 'opacity-60 hover:opacity-100'"
+                    class="w-6 h-6 rounded-full bg-[#0284C7] border border-stone-200 transition-all focus:outline-none" title="Option B: Coastal"></button>
+            <button @click="setTheme('theme-mystic')" 
+                    :class="activeTheme === 'theme-mystic' ? 'ring-2 ring-[var(--accent)] scale-110' : 'opacity-60 hover:opacity-100'"
+                    class="w-6 h-6 rounded-full bg-[#D4AF37] border border-stone-700 transition-all focus:outline-none" title="Option C: Mystic"></button>
+        </div>
+        <span class="text-[10px] font-mono text-[var(--accent)] font-bold border-l border-[var(--border)] pl-2" x-text="activeTheme === 'theme-editorial' ? 'A: Editorial' : (activeTheme === 'theme-coastal' ? 'B: Coastal' : 'C: Mystic')"></span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="border-b border-[var(--border)] bg-[var(--card-bg)]/80 backdrop-blur-md sticky top-0 z-40 transition-theme">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="./index.html" class="flex items-center space-x-2 focus:outline-none">
+                <span class="text-2xl brand-heading font-bold text-[var(--primary)] transition-theme">Wander Wyze</span>
+                <span class="text-xs uppercase tracking-widest text-[var(--accent)] font-extrabold px-1.5 py-0.5 border border-[var(--accent)] rounded transition-theme">Holidays</span>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-xs uppercase tracking-widest font-semibold">
+                <a href="./index.html" class="text-[var(--text-main)] hover:text-[var(--accent)] transition-theme">Home</a>
+                <a href="./destinations.html" class="text-[var(--text-main)] hover:text-[var(--accent)] transition-theme">Destinations</a>
+                <a href="./kenya-safari.html" class="text-[var(--accent)] border-b border-[var(--accent)] pb-1 transition-theme">Kenya Safaris</a>
+                <a href="https://wanderwyze.com/about" target="_blank" class="text-[var(--text-main)] hover:text-[var(--accent)] transition-theme">About Us</a>
+            </nav>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <button @click="selectedDestination = 'Kenya Safari Adventure'; customizerModal = true" class="px-5 py-2.5 bg-[var(--primary)] text-[var(--bg)] rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-[var(--primary-hover)] transition-theme shadow-md">
+                    Customize Journey
+                </button>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2 text-[var(--text-main)] focus:outline-none transition-theme">
+                <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" x-cloak>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Detailed Banner Header -->
+    <section class="py-20 bg-[var(--card-bg)] border-b border-[var(--border)] transition-theme">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-[var(--accent)] font-extrabold transition-theme">Unrivaled Wild Adventures</span>
+                <h1 class="text-4xl md:text-5xl font-bold brand-heading text-[var(--primary)] mt-1 mb-4 transition-theme">Kenya Safari Packages</h1>
+                <p class="text-[var(--text-muted)] text-xs md:text-sm leading-relaxed transition-theme mb-8">
+                    Masai Mara, private exclusive conservancies (Naboisho/Olare), Amboseli elephants, and Lake Nakuru rhinos. Experience the wild magic of East Africa planned around your specific comfort and dietary needs.
+                </p>
+                <div class="flex items-center space-x-4">
+                    <button @click="selectedDestination = 'Kenya Safari Adventure'; customizerModal = true" class="px-6 py-3.5 bg-[var(--primary)] text-[var(--bg)] rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-[var(--primary-hover)] transition-theme shadow-lg">
+                        Request Safari Quote
+                    </button>
+                    <a href="https://wa.me/919833834836" target="_blank" class="px-6 py-3.5 bg-[#25D366] text-white rounded-lg text-xs uppercase tracking-widest font-bold shadow-lg">WhatsApp Us</a>
+                </div>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-2xl h-80">
+                <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80" alt="Safari Rover" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary Layout -->
+    <section class="py-20 max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12" x-data="{ activeDay: 1 }">
+        <!-- Left Column: Package Options & Highlights -->
+        <div class="lg:col-span-1 space-y-8">
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-6 transition-theme">
+                <h3 class="text-lg font-bold brand-heading text-[var(--primary)] mb-4 border-b border-[var(--border)] pb-2 transition-theme">Curated Packages</h3>
+                
+                <div class="space-y-4">
+                    <!-- Option 1 -->
+                    <div class="p-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl transition-theme">
+                        <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-bold transition-theme">3 Nights / 4 Days</span>
+                        <h4 class="text-sm font-bold text-[var(--primary)] transition-theme">Masai Mara Budget Lodge</h4>
+                        <p class="text-[10px] text-[var(--text-muted)] mt-1 transition-theme">Shared 4x4 game drives, full-board lodge accommodations.</p>
+                        <span class="text-xs font-bold text-[var(--accent)] mt-2 block transition-theme">from USD 690 pp twin</span>
+                    </div>
+
+                    <!-- Option 2 -->
+                    <div class="p-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl transition-theme">
+                        <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-bold transition-theme">5 Nights / 6 Days</span>
+                        <h4 class="text-sm font-bold text-[var(--primary)] transition-theme">Mara Conservancy + Mara</h4>
+                        <p class="text-[10px] text-[var(--text-muted)] mt-1 transition-theme">2N private conservancy (night drives/walks) + 3N Masai Mara reserve.</p>
+                        <span class="text-xs font-bold text-[var(--accent)] mt-2 block transition-theme">from USD 1,490 pp twin</span>
+                    </div>
+
+                    <!-- Option 3 -->
+                    <div class="p-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl transition-theme">
+                        <span class="text-[10px] text-[var(--text-muted)] uppercase tracking-widest font-bold transition-theme">6 Nights / 7 Days</span>
+                        <h4 class="text-sm font-bold text-[var(--primary)] transition-theme">Amboseli + Masai Mara</h4>
+                        <p class="text-[10px] text-[var(--text-muted)] mt-1 transition-theme">Elephants with Kilimanjaro views + Masai Mara predator safaris.</p>
+                        <span class="text-xs font-bold text-[var(--accent)] mt-2 block transition-theme">from USD 1,780 pp twin</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why book with us list -->
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-6 transition-theme">
+                <h3 class="text-sm font-bold brand-heading text-[var(--primary)] uppercase tracking-widest mb-4 transition-theme">Safari Highlights</h3>
+                <ul class="space-y-3 text-xs text-[var(--text-muted)] transition-theme">
+                    <li class="flex items-start space-x-2">
+                        <span class="text-[var(--accent)]">✔</span>
+                        <span>Private customized 4x4 Land Cruisers with pop-up rooftops.</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-[var(--accent)]">✔</span>
+                        <span>Certified local naturalists and trackers who know the bush intimately.</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="text-[var(--accent)]">✔</span>
+                        <span>Handpicked boutique camps offering pure vegetarian and Jain cuisines.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Column: Interactive Day-by-Day Timeline Accordion -->
+        <div class="lg:col-span-2 space-y-4">
+            <h2 class="text-2xl font-bold brand-heading text-[var(--primary)] mb-6 transition-theme">Day-by-Day Custom Itinerary</h2>
+
+            <!-- Day 1 -->
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl overflow-hidden transition-theme">
+                <button @click="activeDay = (activeDay === 1 ? 0 : 1)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm uppercase font-bold text-[var(--accent)] bg-[var(--accent)]/10 px-3 py-1 rounded transition-theme">Day 1</span>
+                        <span class="text-sm md:text-base font-bold text-[var(--primary)] transition-theme">Arrival & Flight to Masai Mara</span>
+                    </div>
+                    <span class="text-xs text-[var(--text-muted)] transition-theme" x-text="activeDay === 1 ? '▼' : '▶'"></span>
+                </button>
+                <div x-show="activeDay === 1" class="px-6 pb-6 pt-2 border-t border-[var(--border)] space-y-4 text-xs text-[var(--text-muted)] leading-relaxed transition-theme" x-cloak>
+                    <p>Upon landing at Jomo Kenyatta International Airport (NBO), our private guide will assist with your transfers to Wilson Airport for your short, scenic flight over the Rift Valley directly into the Masai Mara airstrip.</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Airport meet-and-greet service</li>
+                        <li>Scenic domestic fly-in to Mara airstrip</li>
+                        <li>Evening sunset game drive with predator sightings</li>
+                        <li>Overnight stay in curated boutique luxury tented camp</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl overflow-hidden transition-theme">
+                <button @click="activeDay = (activeDay === 2 ? 0 : 2)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm uppercase font-bold text-[var(--accent)] bg-[var(--accent)]/10 px-3 py-1 rounded transition-theme">Day 2</span>
+                        <span class="text-sm md:text-base font-bold text-[var(--primary)] transition-theme">Predators & The Great Migration Drive</span>
+                    </div>
+                    <span class="text-xs text-[var(--text-muted)] transition-theme" x-text="activeDay === 2 ? '▼' : '▶'"></span>
+                </button>
+                <div x-show="activeDay === 2" class="px-6 pb-6 pt-2 border-t border-[var(--border)] space-y-4 text-xs text-[var(--text-muted)] leading-relaxed transition-theme" x-cloak>
+                    <p>Spend a full day in the reserve seeking lions, leopards, cheetahs, and herds of the Great Migration (seasonal). Enjoy a premium picnic bush-lunch under the shade of an acacia tree.</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Early morning game drive for active hunts</li>
+                        <li>Gourmet picnic lunch in the heart of the reserve</li>
+                        <li>Optional sunset hot-air balloon safari (pre-booking recommended)</li>
+                        <li>Pure-veg/Jain hot dinner served at the camp</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl overflow-hidden transition-theme">
+                <button @click="activeDay = (activeDay === 3 ? 0 : 3)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm uppercase font-bold text-[var(--accent)] bg-[var(--accent)]/10 px-3 py-1 rounded transition-theme">Day 3</span>
+                        <span class="text-sm md:text-base font-bold text-[var(--primary)] transition-theme">Cultural Immersion & River Crossings</span>
+                    </div>
+                    <span class="text-xs text-[var(--text-muted)] transition-theme" x-text="activeDay === 3 ? '▼' : '▶'"></span>
+                </button>
+                <div x-show="activeDay === 3" class="px-6 pb-6 pt-2 border-t border-[var(--border)] space-y-4 text-xs text-[var(--text-muted)] leading-relaxed transition-theme" x-cloak>
+                    <p>Visit an authentic, non-touristy Masai Boma village. Learn about their ancient pastoral customs, traditional jumping dances, and craftsmanship directly from the village elders.</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Interactive Masai village boma visit</li>
+                        <li>Mara River crocodiles & hippo viewing walks</li>
+                        <li>Sunset tea and cocktails atop a scenic hill overlook</li>
+                        <li>Campfire storytelling with tribal warriors</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl overflow-hidden transition-theme">
+                <button @click="activeDay = (activeDay === 4 ? 0 : 4)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm uppercase font-bold text-[var(--accent)] bg-[var(--accent)]/10 px-3 py-1 rounded transition-theme">Day 4</span>
+                        <span class="text-sm md:text-base font-bold text-[var(--primary)] transition-theme">Private Conservancy Walking Safaris</span>
+                    </div>
+                    <span class="text-xs text-[var(--text-muted)] transition-theme" x-text="activeDay === 4 ? '▼' : '▶'"></span>
+                </button>
+                <div x-show="activeDay === 4" class="px-6 pb-6 pt-2 border-t border-[var(--border)] space-y-4 text-xs text-[var(--text-muted)] leading-relaxed transition-theme" x-cloak>
+                    <p>Transfer into Olare Motorogi or Naboisho private conservancy. Enjoy absolute exclusivity with limited rovers, night-time game drives (not allowed in public reserves), and thrilling walking safaris.</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Exhilarating guided walking safari with armed rangers</li>
+                        <li>Exclusionary night-time game drives seeking nocturnal hunters</li>
+                        <li>Bespoke camp accommodation inside Olare Motorogi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl overflow-hidden transition-theme">
+                <button @click="activeDay = (activeDay === 5 ? 0 : 5)" class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm uppercase font-bold text-[var(--accent)] bg-[var(--accent)]/10 px-3 py-1 rounded-theme">Day 5</span>
+                        <span class="text-sm md:text-base font-bold text-[var(--primary)] transition-theme">Amboseli Giants with Kilimanjaro Views</span>
+                    </div>
+                    <span class="text-xs text-[var(--text-muted)] transition-theme" x-text="activeDay === 5 ? '▼' : '▶'"></span>
+                </button>
+                <div x-show="activeDay === 5" class="px-6 pb-6 pt-2 border-t border-[var(--border)] space-y-4 text-xs text-[var(--text-muted)] leading-relaxed transition-theme" x-cloak>
+                    <p>Board a morning flight via Nairobi directly to Amboseli National Park. Behold massive elephant bulls grazing peacefully in front of the snow-capped, towering Peak of Mount Kilimanjaro.</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Domestic flight connection directly to Amboseli airstrip</li>
+                        <li>Incredible photographic drives with giant elephant tuskers</li>
+                        <li>Iconic Mount Kilimanjaro sunset backdrop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer class="bg-[var(--card-bg)] border-t border-[var(--border)] py-16 transition-theme">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="space-y-4">
+                <a href="#" class="flex items-center space-x-2">
+                    <span class="text-2xl brand-heading font-bold text-[var(--primary)] transition-theme">Wander Wyze</span>
+                </a>
+                <p class="text-xs text-[var(--text-muted)] leading-relaxed transition-theme">
+                    Crafting bespoke travel experiences for discerning travelers. We specialize in custom itineraries that create unforgettable memories across the globe.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-xs uppercase tracking-widest font-extrabold text-[var(--primary)] mb-4 transition-theme">Destinations</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="./kenya-safari.html" class="text-[var(--text-muted)] hover:text-[var(--accent)] transition-theme">Kenya Safaris</a></li>
+                    <li><a href="./destinations.html" class="text-[var(--text-muted)] hover:text-[var(--accent)] transition-theme">Maldives Islands</a></li>
+                    <li><a href="./destinations.html" class="text-[var(--text-muted)] hover:text-[var(--accent)] transition-theme">Bali Cultural</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs uppercase tracking-widest font-extrabold text-[var(--primary)] mb-4 transition-theme">Contact Information</h4>
+                <ul class="space-y-2 text-xs text-[var(--text-muted)] transition-theme">
+                    <li>📞 +91 9833834836</li>
+                    <li>✉️ ravi@wanderwyze.com</li>
+                    <li>📍 Rohini, Delhi-110085</li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase tracking-widest font-extrabold text-[var(--primary)] mb-4 transition-theme">Stay Connected</h4>
+                <p class="text-xs text-[var(--text-muted)] transition-theme">Have any questions or need direct support? Tap below to talk instantly.</p>
+                <a href="https://wa.me/919833834836" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 bg-[#25D366] text-white font-bold rounded-lg text-xs uppercase tracking-widest">
+                    <span>Chat on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Journey Customizer Modal -->
+    <div x-show="customizerModal" 
+         @click="customizerModal = false" 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 backdrop-blur-sm" x-cloak>
+        <div @click.stop 
+             class="bg-[var(--card-bg)] text-[var(--text-main)] border border-[var(--border)] max-w-lg w-full rounded-2xl shadow-2xl overflow-hidden transition-theme"
+             x-data="{
+                formData: {
+                    name: '',
+                    email: '',
+                    phone: '',
+                    destination: '',
+                    month: 'October',
+                    travelers: '2',
+                    notes: ''
+                },
+                submitForm() {
+                    this.formData.destination = selectedDestination;
+                    WanderWyzeEnquiry.sendInquiry(this.formData);
+                    customizerModal = false;
+                }
+             }">
+            <div class="px-6 py-5 border-b border-[var(--border)] flex items-center justify-between transition-theme">
+                <h3 class="text-lg font-bold brand-heading text-[var(--primary)] transition-theme">Plan Your Bespoke Journey</h3>
+                <button type="button" @click="customizerModal = false" class="p-1 text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form @submit.prevent="submitForm()" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1 transition-theme">Chosen Destination</label>
+                    <input type="text" :value="selectedDestination" class="w-full px-4 py-2 bg-stone-100 dark:bg-stone-800 border border-[var(--border)] rounded-lg text-sm text-[var(--text-main)] font-semibold" disabled>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1 transition-theme">Full Name *</label>
+                        <input type="text" x-model="formData.name" class="w-full px-4 py-2 bg-[var(--bg)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-main)] transition-theme focus:outline-none focus:ring-1 focus:ring-[var(--primary)]" required>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1 transition-theme">Phone *</label>
+                        <input type="tel" x-model="formData.phone" placeholder="+91" class="w-full px-4 py-2 bg-[var(--bg)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-main)] transition-theme focus:outline-none focus:ring-1 focus:ring-[var(--primary)]" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1 transition-theme">Travel Month</label>
+                        <select x-model="formData.month" class="w-full px-4 py-2 bg-[var(--bg)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-main)] transition-theme focus:outline-none focus:ring-1 focus:ring-[var(--primary)]">
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                            <option>January 2027</option>
+                            <option>Other / Flexible</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1 transition-theme">Adults / Kids</label>
+                        <input type="number" x-model="formData.travelers" min="1" class="w-full px-4 py-2 bg-[var(--bg)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-main)] transition-theme focus:outline-none focus:ring-1 focus:ring-[var(--primary)]">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1 transition-theme">Custom Requests (Diet, Hotels, Flights)</label>
+                    <textarea x-model="formData.notes" rows="3" placeholder="e.g. Pure Vegetarian meals, overwater villas preferred..." class="w-full px-4 py-2 bg-[var(--bg)] border border-[var(--border)] rounded-lg text-sm text-[var(--text-main)] transition-theme focus:outline-none focus:ring-1 focus:ring-[var(--primary)]"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-3 bg-[var(--primary)] text-[var(--bg)] rounded-lg text-xs uppercase tracking-widest font-bold hover:bg-[var(--primary-hover)] transition-theme shadow-md mt-6">
+                    Submit Inquiry to WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Integrate Inquiry Handler -->
+    <script src="./whatsapp-handler.js"></script>
+</body>
+</html>

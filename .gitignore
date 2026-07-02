@@ -1,0 +1,9 @@
+.gstack/
+.omo/
+*.png
+*.txt
+*.md
+.codegraph
+.codegraph/
+node_modules/
+.DS_Store

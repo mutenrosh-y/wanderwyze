@@ -1,0 +1,89 @@
+/* ==========================================
+   WanderWyze Holidays - Multi-Theme Engine
+   Option A: Editorial Luxury
+   Option B: Coastal Minimalist
+   Option C: Mystic Explorer
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* --- Theme Variable Definitions --- */
+:root {
+    /* OPTION A: Editorial Luxury (Default) */
+    --bg: #FDFBF7;
+    --text-main: #1C1917;
+    --text-muted: #57534E;
+    --primary: #0F2E1E;
+    --primary-hover: #082013;
+    --accent: #D97706;
+    --accent-hover: #B45309;
+    --border: #E7E5E4;
+    --card-bg: #FFFFFF;
+    --shadow: 0 4px 20px -2px rgba(15, 46, 30, 0.05), 0 2px 8px -1px rgba(15, 46, 30, 0.02);
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    
+    --theme-label: 'Editorial Luxury';
+}
+
+body.theme-coastal {
+    /* OPTION B: Coastal Minimalist */
+    --bg: #FFFFFF;
+    --text-main: #0F172A;
+    --text-muted: #475569;
+    --primary: #0F172A;
+    --primary-hover: #1E293B;
+    --accent: #0284C7;
+    --accent-hover: #0369A1;
+    --border: #E2E8F0;
+    --card-bg: #FFFFFF;
+    --shadow: 0 10px 30px -3px rgba(2, 132, 199, 0.08), 0 4px 12px -2px rgba(2, 132, 199, 0.03);
+    
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --theme-label: 'Coastal Minimalist';
+}
+
+body.theme-mystic {
+    /* OPTION C: Mystic Explorer */
+    --bg: #121212;
+    --text-main: #F3F4F6;
+    --text-muted: #A3A3A3;
+    --primary: #D4AF37;
+    --primary-hover: #C59B27;
+    --accent: #D4AF37;
+    --accent-hover: #C59B27;
+    --border: #262626;
+    --card-bg: #1C1C1C;
+    --shadow: 0 8px 30px -2px rgba(0, 0, 0, 0.5);
+    
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --theme-label: 'Mystic Explorer';
+}
+
+/* --- Global Base Overrides --- */
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-heading {
+    font-family: var(--font-heading);
+    transition: font-family 0.5s ease-in-out;
+}
+
+/* --- Smooth Transition Utilities --- */
+.transition-theme {
+    transition: background-color 0.5s ease-in-out, 
+                color 0.5s ease-in-out, 
+                border-color 0.5s ease-in-out, 
+                fill 0.5s ease-in-out, 
+                stroke 0.5s ease-in-out, 
+                box-shadow 0.5s ease-in-out;
+}
